@@ -134,6 +134,10 @@ class _TerminalControl(UIControl):
     def get_key_bindings(self) -> KeyBindings:
         bindings = KeyBindings()
 
+        @bindings.add(Keys.Enter)
+        def _(event):
+            self.process.write_key("\r")
+
         @bindings.add(Keys.Any)
         def handle_key(event):
             """
